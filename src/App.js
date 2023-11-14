@@ -3,15 +3,8 @@ import {
 } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Footer from "./Footer.js";
 import AppRoutes from './AppRoutes.js';
-
-const style = {
-  textDecoration: "none",
-  display: "block",
-  width: "100%",
-  color: "black",
-  padding: "1.5rem 0"
-}
 
 export default function App() {
   const [isNavExpanded, setIsNavExpanded] = useState(false)
@@ -40,23 +33,32 @@ export default function App() {
         <div className={
           isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
         }>
-          <ul>
-            <li>
-              <Link to="/portfolio" style={style}>Home</Link>
+          <ul className='u-list'>
+            <li className='nav-list'>
+              <Link className='nav-link' to="/portfolio" onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+        }}>Home</Link>
             </li>
-            <li>
-              <Link to="/about-me" style={style}>About me</Link>
+            <li className='nav-list'>
+              <Link className='nav-link' to="/about-me" onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+        }}>About me</Link>
             </li>
-            <li>
-              <Link to="/project" style={style}>Project</Link>
+            <li className='nav-list'>
+              <Link className='nav-link' to="/project" onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+        }}>Project</Link>
             </li>
-            <li>
-              <Link to="/contact" style={style}>Contact</Link>
+            <li className='nav-list'>
+              <Link className='nav-link' to="/contact" onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+        }}>Contact</Link>
             </li>
           </ul>
         </div>          
       </nav>
       <AppRoutes/>
+      <Footer/>
     </Router>
   );
 }

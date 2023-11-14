@@ -5,9 +5,7 @@ import Home from './Home.js';
 import About from './AboutMe.js';
 import Contact from './Contact.js';
 import NoMatch from './NoMatch.js';
-import Project from './Project.js';
-import ProjectList from './ProjectList.js';
-import ProjectContent from './ProjectContent.js';    
+import Project from './Project.js';   
 
 export default function AppRoutes() {
 
@@ -16,15 +14,7 @@ export default function AppRoutes() {
         { path: "/portfolio", element: <Home/> },
         { path: "/about-me", element: <About/> },
         { path: "/contact", element: <Contact/> },
-
-        { path: "/project", 
-          element: <Project/>,
-          children: [
-            { index: true, element: <ProjectList/> },
-            { path: ":blogId", element: <ProjectContent/> }
-          ],
-        },
-
+        { path: "/project", element: <Project/>,},
         { path: "*", element: <NoMatch/>}
 
     ]);
