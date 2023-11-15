@@ -1,15 +1,14 @@
 import {
   BrowserRouter as Router, Link 
 } from 'react-router-dom';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Footer from "./Footer.js";
 import AppRoutes from './AppRoutes.js';
 
 export default function App() {
-  const [isNavExpanded, setIsNavExpanded] = useState(false)
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
   return (
-
     <Router>
       <nav className='navigation'>
         <Link className='page-name' to="/portfolio">Portfolio</Link>

@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Open+Sans:ital,wght@1,700&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Orbitron&display=swap');
 
 * {
   box-sizing: border-box;
@@ -21,75 +23,19 @@ body {
     to {opacity: 1;}
 }
 
-  .about-me, .contact, .home, .project {
-    font-family: Arial, sans-serif;
-    padding-top: 0;
-    background-color: #f4f4f4;
-    padding-top: 3.5rem;
-}
-
-  header {
-    background-color: rgb(0, 99, 132);
-    color: white;
-    padding: 10px;
-    text-align: center;
-    width: auto;
-    animation: headerSlideDown 2s;
-}
-
-@keyframes headerSlideDown {
-    from {margin-top: -100px;}
-    to {margin-top: 0;}
-}
-
-main {
-    padding: 30px;
-}
-
-section {
-    margin: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    transition: box-shadow 0.3s ease;
-}
-
-section:hover {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-form {
-    margin-top: 20px;
-    animation: formFadeIn 2s;
-}
-
-@keyframes formFadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-input, textarea {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px;
-    transition: box-shadow 0.5s;
-}
-
-input:focus, textarea:focus {
-    box-shadow: 0 0 5px #000;
-}
-
-  h1, p {
-    margin: 1rem 0;
-}
-
   .nav-link {
     text-decoration: none;
     display: block;
     width: 100%;
     color: white;
     padding: 1.5rem 0;
+    font-family: 'Major Mono Display', monospace;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: aqua;
 }
 
   .navigation {
@@ -100,8 +46,7 @@ input:focus, textarea:focus {
     position: fixed;
     padding: 0.5rem 0rem;
     background-color: rgb(0, 52, 70);
-    color: black;
-    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+    /* box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23); */
 }
 
   .page-name {
@@ -110,7 +55,7 @@ input:focus, textarea:focus {
     font-size: 1.3rem;
     margin-left: 1rem;
     font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
   .navigation-menu {
@@ -150,15 +95,139 @@ input:focus, textarea:focus {
     background-color: rgb(1, 79, 105);
 }
 
-  .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: rgb(0, 52, 70);
-    color: white;
-    text-align: center;
-    animation: footerSlideUp 2s;
+div .about-me, .contact, .home, .project, .no-match {
+  font-family: Arial, sans-serif;
+  background-color: rgb(0, 78, 104);
+  padding-top: 3.6rem;
+  padding-bottom: 3rem;
+  min-height: 100vh;
+}
+
+header {
+  background-image: linear-gradient(180deg, rgb(0, 52, 70), rgb(0, 78, 104));
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width: auto;
+  animation: headerSlideDown 2s;
+  font-family: 'Major Mono Display', monospace;
+  font-size: 1.1rem;
+}
+
+@keyframes headerSlideDown {
+  from {margin-top: -100px;}
+  to {margin-top: 0;}
+}
+
+section h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid rgb(0, 52, 70);
+  color: rgb(1, 104, 138);
+}
+
+section p {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: larger;
+}
+
+section span {
+  color: rgb(0, 145, 193);
+}
+
+section img {
+  width: 100%;
+  height: 100%;
+  padding: 0 4px;
+  border-radius: 10px;
+}
+
+section {
+  margin: 30px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.543);
+  font-family: 'Major Mono Display', monospace;
+  font-family: 'Orbitron', sans-serif;
+  word-spacing: 3px;
+  letter-spacing: 2px;
+}
+
+h1, p {
+  margin: 1rem 0;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.complex-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.complex-table th,
+.complex-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.complex-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.complex-table tr:hover {
+  background-color: #ddd;
+}
+
+.complex-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(0, 52, 70);
+  color: white;
+}
+
+.App {
+  text-align: center;
+  overflow-x: auto;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-item {
+  background-color: #f9f9f9;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-name {
+  color: rgb(0, 94, 126);
+  font-size: 22px;
+}
+
+.item-list {
+  color: #333;
+  font-size: 18px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-image: linear-gradient(180deg, rgb(0, 78, 104), rgb(0, 52, 70));
+  color: white;
+  text-align: center;
+  animation: footerSlideUp 2s;
 }
 
 @keyframes footerSlideUp {
@@ -185,9 +254,8 @@ input:focus, textarea:focus {
       left: 0;
       flex-direction: column;
       width: 100%;
-      height: calc(60vh - 77px);
-      background-color: rgb(1, 80, 106);
-      border-top: 1px solid black;
+      height: calc(100vh - 77px);
+      background-image: linear-gradient(180deg, rgb(0, 52, 70), rgb(0, 78, 104));
     }
 
     .navigation-menu .nav-list {
@@ -200,7 +268,8 @@ input:focus, textarea:focus {
     }
 
     .navigation-menu .nav-list:hover {
-      background-color: rgb(0, 106, 141);
+      /* background-color: rgb(0, 106, 141); */
+      background-image: linear-gradient(180deg, rgb(0, 106, 141), rgb(0, 93, 123));
       transform: scale(1.1);
     }
 }
@@ -209,11 +278,20 @@ input:focus, textarea:focus {
     .navigation-menu .u-list {
       /* previous styles */
       display: none;
-    }
+  }
 }
 
-  @media screen and (max-width: 768px) {
-    .navigation-menu.expanded .u-list {
-      display: block;
-    }
+@media screen and (max-width: 768px) {
+  .navigation-menu.expanded .u-list {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  section {
+    width: 65%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }

@@ -1,3 +1,7 @@
+import Table from './Table.js';
+import TableExp from './TableExperience.js';
+import SkillList from './SkillList.js';
+
 export default function About() {
     return (
       <div className="about-me">
@@ -5,21 +9,22 @@ export default function About() {
           <h1>About Me</h1>
         </header>
         <main>
-          <section id="bio">
-            <h2>Biography</h2>
-            <p>Some information about me.</p>
+          <section>
+            <h2>Who I am</h2>
+            <p>My name is <span>Muhammad Adam Bin Jama'alulain</span></p>
+            <p>I graduated from <span>Universiti Kebangsaan Malaysia (UKM)</span> with an Honours Bachelor's degree in Software Engineering (Information System Development).</p>
           </section>
-          <section id="education">
-            <h2>Education</h2>
-            <p>Details about my educational background.</p>
+          <section>
+            <h2>Educations</h2>
+            <Table/>
           </section>
           <section id="skills">
             <h2>Skills</h2>
-            <p>A list of my skills.</p>
+            <SkillList/>
           </section>
           <section id="experience">
             <h2>Experience</h2>
-            <p>My professional experience.</p>
+            <TableExp/>
           </section>
         </main>
       </div>
