@@ -7,6 +7,10 @@ export default function About() {
         <main>
           <section id="contact">
             <h2>Get in touch</h2>
+            <h3>Email</h3>
+            <a href="mailto:muhammadadambtp53@gmail.com"><p>muhammadadambtp53@gmail.com</p></a>
+            <h3>Phone Number</h3>
+            <a href="tel:0103351287"><p>0103351287</p></a>
           </section>
         </main>
       </div>

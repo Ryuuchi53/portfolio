@@ -1,3 +1,5 @@
+import TableProject from './TableProject.js';
+
 export default function Posts() {
     return (
       <div className="project">
@@ -6,12 +8,9 @@ export default function Posts() {
         </header>
           <main>
             <section id="intro">
-                <h2>Introduction</h2>
-                <p>This is my website. I hope you enjoy your visit.</p>
-            </section>
-            <section id="about">
-                <h2>About Me</h2>
-                <p>Some information about me.</p>
+                <h2>This Is My Project</h2>
+                <p>I put my project here </p>
+                <TableProject/>
             </section>
         </main>
       </div>

@@ -23,6 +23,19 @@ body {
     to {opacity: 1;}
 }
 
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: linear-gradient(180deg, rgb(0, 52, 70), rgb(0, 78, 104));
+  z-index: 1;
+  color: white;
+  font-family: 'Major Mono Display', monospace;
+}
+
   .nav-link {
     text-decoration: none;
     display: block;
@@ -46,7 +59,6 @@ body {
     position: fixed;
     padding: 0.5rem 0rem;
     background-color: rgb(0, 52, 70);
-    /* box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23); */
 }
 
   .page-name {
@@ -109,9 +121,9 @@ header {
   padding: 10px;
   text-align: center;
   width: auto;
-  animation: headerSlideDown 2s;
   font-family: 'Major Mono Display', monospace;
   font-size: 1.1rem;
+  animation: headerSlideDown 1s;
 }
 
 @keyframes headerSlideDown {
@@ -126,6 +138,21 @@ section h2 {
   padding-bottom: 20px;
   border-bottom: 3px solid rgb(0, 52, 70);
   color: rgb(1, 104, 138);
+}
+
+section a {
+  text-decoration: none;
+  color: rgb(0, 145, 193);
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap; 
+  white-space: -o-pre-wrap;  
+  word-wrap: break-word;
+}
+
+section h3 {
+  padding-top: 30px;
+  text-align: center;
+  font-size: larger;
 }
 
 section p {
@@ -219,6 +246,36 @@ h1, p {
   font-size: 18px;
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.scroll-to-top:hover {
+  transform: scale(1.1);
+}
+
+.back-to-top {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 footer {
   position: fixed;
   left: 0;
@@ -268,7 +325,6 @@ footer {
     }
 
     .navigation-menu .nav-list:hover {
-      /* background-color: rgb(0, 106, 141); */
       background-image: linear-gradient(180deg, rgb(0, 106, 141), rgb(0, 93, 123));
       transform: scale(1.1);
     }

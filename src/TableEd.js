@@ -16,11 +16,6 @@ const data = [
       'School Name': 'Universiti Kebangsaan Malaysia',
       'Field Of Study': 'Bachelor of Software Engineering With Honours (Information System Development)'
     },
-    {
-      Date: '12/10/23-20/11/23',
-      'School Name': 'Train & Place Upskilling Programme under usains',
-      'Field Of Study': 'Software Engineering'
-    },
   ];
   
 
