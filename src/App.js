@@ -29,7 +29,7 @@ export default function App() {
         ) : (
           <Router>
             <nav className='navigation'>
-              <Link className='page-name' to="/portfolio">Portfolio</Link>
+              <a className='page-name' href='/portfolio'>Portfolio</a>
               <button className="hamburger" onClick={() => {
                 setIsNavExpanded(!isNavExpanded);
               }}>
