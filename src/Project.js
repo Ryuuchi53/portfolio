@@ -6,10 +6,9 @@ export default function Posts() {
         <header>
           <h1>My Project</h1>
         </header>
-          <main>
-            <section id="intro">
+          <main id="project">
+            <section>
                 <h2>This Is My Project</h2>
-                <p>I put my project here </p>
                 <TableProject/>
             </section>
         </main>

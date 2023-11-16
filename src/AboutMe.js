@@ -10,7 +10,7 @@ export default function About() {
         <header>
           <h1>About Me</h1>
         </header>
-        <main>
+        <main id='about'>
           <section>
             <h2>Who I am</h2>
             <p>My name is <span>Muhammad Adam Bin Jama'alulain</span></p>
