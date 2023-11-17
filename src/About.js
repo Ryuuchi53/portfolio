@@ -1,18 +1,18 @@
-import React from 'react';
 import TableEd from './TableEd.js';
 import TableTraining from './TableTraining.js';
 import TableCert from './TableCert.js';
-import SkillList from './SkillList.js';
 import TableExp from './TableExperience.js';
+import SkillList from './SkillList.js'
+import React from 'react';
 
 export default function About() {
     return (
-      <div className="about-me">
+      <div className="about">
         <header>
           <h1>About Me</h1>
         </header>
-        <main id='about'>
-          <section>
+        <main id="about">
+        <section>
             <h2 style={{
               paddingBottom: "20px",
               backgroundColor: "rgb(0, 52, 70)",
@@ -46,4 +46,4 @@ export default function About() {
         </main>
       </div>
     );
-}
+  }

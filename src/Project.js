@@ -1,7 +1,7 @@
 import TableProject from './TableProject.js';
 import React from 'react';
 
-export default function Posts() {
+export default function Project() {
     return (
       <div className="project">
         <header>

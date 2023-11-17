@@ -117,7 +117,7 @@ div .home::-webkit-scrollbar {
     background-color: rgb(1, 79, 105);
 }
 
-div .about-me, .contact, .home, .project, .no-match {
+div .about, .contact, .home, .project, .no-match {
   font-family: Arial, sans-serif;
   background-color: rgb(0, 78, 104);
   padding-top: 3.6rem;
@@ -260,7 +260,8 @@ header h1, section h2, section h3, section p, footer p {
   .complex-table tbody,
   .complex-table th,
   .complex-table td,
-  .complex-table tr, .complex-table a {
+  .complex-table tr, 
+  .complex-table a {
     display: block;
     font-size: small;
   }
@@ -284,8 +285,7 @@ header h1, section h2, section h3, section p, footer p {
 
   .complex-table td:before {
     position: absolute;
-    top: 6px;
-    left: 6px;
+    left: 10px;
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;

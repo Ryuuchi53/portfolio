@@ -57,7 +57,7 @@ export default function App() {
               }}>Home</Link>
                   </li>
                   <li className='nav-list'>
-                    <Link className='nav-link' to="/about-me" onClick={() => {
+                    <Link className='nav-link' to="/about" onClick={() => {
                 setIsNavExpanded(!isNavExpanded);
               }}>About me</Link>
                   </li>
