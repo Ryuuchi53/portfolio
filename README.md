@@ -7,6 +7,6 @@
     <th>This is live page</th>
   </tr>
   <tr>
-    <td>https://ryuuchi53.github.io/portfolio/</td>
+    <td><a href="https://ryuuchi53.github.io/portfolio/" target="blank">https://ryuuchi53.github.io/portfolio/</a></td>
   </tr>
 </table>
