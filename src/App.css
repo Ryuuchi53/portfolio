@@ -112,7 +112,7 @@ div .about-me, .contact, .home, .project, .no-match {
   font-family: Arial, sans-serif;
   background-color: rgb(0, 78, 104);
   padding-top: 3.6rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3.6rem;
   min-height: 100vh;
 }
 
@@ -141,7 +141,7 @@ section h2 {
   color: rgb(1, 104, 138);
 }
 
-section a {
+.complex-table a, section a {
   text-decoration: none;
   color: rgb(0, 145, 193);
   white-space: -moz-pre-wrap;
@@ -162,7 +162,7 @@ section p {
   font-size: larger;
 }
 
-section span {
+section p > span {
   color: rgb(0, 145, 193);
 }
 
@@ -176,7 +176,7 @@ section img {
 section {
   margin: 30px;
   border-radius: 5px;
-  background-color: white;
+  background-color: whitesmoke;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.543);
   font-family: 'Major Mono Display', monospace;
   font-family: 'Orbitron', sans-serif;
@@ -184,9 +184,8 @@ section {
   letter-spacing: 2px;
 }
 
-h1,h2,h3,p {
+header h1, section h2, section h3, section p, footer p {
   margin: 1em 0;
-  padding: 10px;
 }
 
 .table-container {
@@ -229,7 +228,7 @@ h1,h2,h3,p {
   .complex-table tbody,
   .complex-table th,
   .complex-table td,
-  .complex-table tr {
+  .complex-table tr, .complex-table a {
     display: block;
     font-size: small;
   }
@@ -316,7 +315,7 @@ h1,h2,h3,p {
     font-size: small;
   }
   .item-name {
-    font-size: medium;
+    font-size: small;
   }
   header {
     font-size: small;
@@ -328,14 +327,14 @@ h1,h2,h3,p {
     font-size: medium;
   }
   section p{
-    font-size: medium;
+    font-size: small;
   }
 }
 
 footer {
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: -3px;
   width: 100%;
   background-image: linear-gradient(180deg, rgb(0, 78, 104), rgb(0, 52, 70));
   color: white;
@@ -364,7 +363,7 @@ footer {
   @media screen and (max-width: 768px) {
     .navigation-menu .u-list {
       position: absolute;
-      top: 60px;
+      top: 55px;
       left: 0;
       flex-direction: column;
       width: 100%;

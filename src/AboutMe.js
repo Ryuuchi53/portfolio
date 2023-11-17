@@ -1,8 +1,8 @@
 import TableEd from './TableEd.js';
 import TableTraining from './TableTraining.js';
 import TableCert from './TableCert.js';
-import TableExp from './TableExperience.js';
 import SkillList from './SkillList.js';
+import TableExp from './TableExperience.js';
 
 export default function About() {
     return (

@@ -3,9 +3,9 @@ import { useRoutes } from 'react-router-dom';
 
 import Home from './Home.js';
 import About from './AboutMe.js';
+import Project from './Project.js';
 import Contact from './Contact.js';
-import NoMatch from './NoMatch.js';
-import Project from './Project.js';   
+import NoMatch from './NoMatch.js'; 
 
 export default function AppRoutes() {
 
@@ -15,7 +15,7 @@ export default function AppRoutes() {
         { path: "/about-me", element: <About/> },
         { path: "/contact", element: <Contact/> },
         { path: "/project", element: <Project/>,},
-        { path: "*", element: <NoMatch/>}
+        { path: "/*", element: <NoMatch/>}
 
     ]);
 

@@ -6,11 +6,11 @@ export default function About() {
         </header>
         <main id="contact">
           <section>
-            <h2>Get in touch</h2>
-            <h3>Email</h3>
+            <h2>Email</h2>
             <a href="mailto:muhammadadambtp53@gmail.com"><p>muhammadadambtp53@gmail.com</p></a>
-            <hr/>
-            <h3>Phone Number</h3>
+          </section>
+          <section>
+            <h2>Phone Number</h2>
             <a href="tel:0103351287"><p>0103351287</p></a>
           </section>
         </main>
