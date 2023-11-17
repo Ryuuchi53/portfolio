@@ -23,6 +23,15 @@ body {
     to {opacity: 1;}
 }
 
+div .home {
+  -ms-overflow-style: none;
+  overflow-y: scroll;
+}
+
+div .home::-webkit-scrollbar {
+  display: none;
+}
+
 .loader-container {
   width: 100%;
   height: 100vh;
