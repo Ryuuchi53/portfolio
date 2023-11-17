@@ -124,6 +124,9 @@ header {
   width: auto;
   font-family: 'Major Mono Display', monospace;
   font-size: 1.1rem;
+}
+
+header, main {
   animation: headerSlideDown 1s;
 }
 
