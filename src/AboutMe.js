@@ -16,23 +16,23 @@ export default function About() {
             <p>My name is <span>Muhammad Adam Bin Jama'alulain</span></p>
             <p>I graduated from <span>Universiti Kebangsaan Malaysia (UKM)</span> with an Honours Bachelor's degree in Software Engineering (Information System Development).</p>
           </section>
-          <section id='education'>
+          <section>
             <h2>Educations</h2>
             <TableEd/>
           </section>
-          <section id='training'>
+          <section>
             <h2>Training</h2>
             <TableTraining/>
           </section>
-          <section id='certification'>
+          <section>
             <h2>Certification</h2>
             <TableCert/>
           </section>
-          <section id="skills">
+          <section>
             <h2>Skills</h2>
             <SkillList/>
           </section>
-          <section id="experience">
+          <section>
             <h2>Experience</h2>
             <TableExp/>
           </section>
