@@ -139,9 +139,6 @@ section h2 {
   font-size: 1.8rem;
   text-align: center;
   padding-top: 20px;
-  padding-bottom: 20px;
-  border-bottom: 3px solid rgb(0, 52, 70);
-  color: rgb(1, 104, 138);
 }
 
 .complex-table a, section a {
@@ -159,6 +156,33 @@ section h3 {
   font-size: larger;
 }
 
+img {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 4px 4px 4px 4px;
+  border-radius: 10px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 5s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 section p {
   padding: 10px 20px;
   text-align: center;
@@ -167,13 +191,6 @@ section p {
 
 section p > span {
   color: rgb(0, 145, 193);
-}
-
-section img {
-  width: 100%;
-  height: 100%;
-  padding: 0 4px;
-  border-radius: 10px;
 }
 
 section {
@@ -195,17 +212,20 @@ header h1, section h2, section h3, section p, footer p {
   overflow-x: auto;
   position: relative;
   z-index: 1;
+  max-width: 100%; /* Ensures the table doesn't exceed the viewport on larger screens */
 }
 
 .complex-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* Helps columns of the table to have equal width */
 }
 
 .complex-table th,
 .complex-table td {
   border: 1px solid #ddd;
   padding: 10px;
+  word-wrap: break-word; /* Prevents long words from overflowing */
 }
 
 .complex-table tr:nth-child(even) {
@@ -318,7 +338,7 @@ header h1, section h2, section h3, section p, footer p {
     font-size: small;
   }
   .item-name {
-    font-size: small;
+    font-size: medium;
   }
   header {
     font-size: small;

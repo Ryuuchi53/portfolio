@@ -1,3 +1,4 @@
+import React from 'react';
 import TableEd from './TableEd.js';
 import TableTraining from './TableTraining.js';
 import TableCert from './TableCert.js';
@@ -12,8 +13,14 @@ export default function About() {
         </header>
         <main id='about'>
           <section>
-            <h2>Who I am</h2>
+            <h2 style={{
+              paddingBottom: "20px",
+              backgroundColor: "rgb(0, 52, 70)",
+              color: "white",
+              borderBottom: "3px solid rgb(0, 52, 70)"
+            }}>Who I am</h2>
             <p>My name is <span>Muhammad Adam Bin Jama'alulain</span></p>
+            <hr/>
             <p>I graduated from <span>Universiti Kebangsaan Malaysia (UKM)</span> with an Honours Bachelor's degree in Software Engineering (Information System Development).</p>
           </section>
           <section>

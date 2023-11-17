@@ -1,6 +1,5 @@
 import React from 'react';
-
-const imageUrl = "https://source.unsplash.com/xkBaqlcqeb4";
+import logo from './logo.svg';
 
 export default function Home() {
   return (
@@ -11,8 +10,17 @@ export default function Home() {
       <main id='home'>
         <section>
           <h2>How I build this website</h2>
+          <div style={{
+          display: "grid",
+          alignItems: "center", 
+          gridTemplateColumns: "1fr 1fr",
+          columnGap: "5px",
+          backgroundColor: "rgb(0, 52, 70)",
+          color: "white"
+        }}>
           <p>I build this website using react to make it more responsive and interactive.</p>
-          <img src={imageUrl} alt="react" />
+          <img src={logo} className="App-logo" alt="logo" />
+          </div>
         </section>
       </main>
     </div>
