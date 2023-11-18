@@ -17,6 +17,7 @@ export default function App() {
       setLoading(false);
     }, 2000);
   }, []);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className='container'>
@@ -30,23 +31,14 @@ export default function App() {
           <Router>
             <nav className='navigation'>
               <a className='page-name' href='/portfolio'>Portfolio</a>
-              <button className="hamburger" onClick={() => {
+              <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={() => {
+                setIsOpen(!isOpen);
                 setIsNavExpanded(!isNavExpanded);
-              }}>
-              {/* icon from heroicons.com */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="white"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              </button>
+                }}>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
               <div className={
                 isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
               }>
@@ -54,21 +46,25 @@ export default function App() {
                   <li className='nav-list'>
                     <Link className='nav-link' to="/portfolio" onClick={() => {
                 setIsNavExpanded(!isNavExpanded);
+                setIsOpen(!isOpen);
               }}>Home</Link>
                   </li>
                   <li className='nav-list'>
                     <Link className='nav-link' to="/about" onClick={() => {
                 setIsNavExpanded(!isNavExpanded);
+                setIsOpen(!isOpen);
               }}>About me</Link>
                   </li>
                   <li className='nav-list'>
                     <Link className='nav-link' to="/project" onClick={() => {
                 setIsNavExpanded(!isNavExpanded);
+                setIsOpen(!isOpen);
               }}>Project</Link>
                   </li>
                   <li className='nav-list'>
                     <Link className='nav-link' to="/contact" onClick={() => {
                 setIsNavExpanded(!isNavExpanded);
+                setIsOpen(!isOpen);
               }}>Contact</Link>
                   </li>
                 </ul>
