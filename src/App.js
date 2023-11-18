@@ -15,7 +15,7 @@ export default function App() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1670);
   }, []);
   const [isOpen, setIsOpen] = useState(false);
 

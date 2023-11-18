@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./App.css";
 
-const TypingAnimation = ({ message = 'Get Started', speed = 100 }) => {
+const TypingAnimation = ({ message = 'Get Started', speed = 75 }) => {
   const [displayText, setDisplayText] = useState('');
 
   useEffect(() => {

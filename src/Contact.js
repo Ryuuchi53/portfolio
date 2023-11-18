@@ -22,6 +22,13 @@ export default function About() {
               padding: "20px"
             }}>0103351287</p></a>
           </section>
+          <div className='icon'>
+            <ul className="social-icons">
+                <li><a href="https://www.facebook.com/muhammadadambtp/" target='_blank' rel="noreferrer"><i className="fab fa-facebook"></i></a></li>
+                <li><a href="https://linkedin.com/in/muhammad-adam-jama-alulain-62736b220" target='_blank' rel="noreferrer"><i className="fab fa-linkedin"></i></a></li>
+                <li><a href="https://github.com/Ryuuchi53" target='_blank' rel="noreferrer"><i className="fab fa-github"></i></a></li>
+            </ul>
+          </div>
         </main>
       </div>
     );
