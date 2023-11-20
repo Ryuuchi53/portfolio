@@ -1,5 +1,4 @@
 import TableProject from './TableProject.js';
-import React from 'react';
 
 export default function Project() {
     return (
