@@ -6,6 +6,11 @@ const data = [
       'Name': '5G Pioneers Program',
       Link: 'https://www.credly.com/badges/e807d495-2a73-4804-b307-341766e5e04e/public_url'
     },
+    {
+      Date: '1 december 2023',
+      'Name': 'Software Engineering MicroDegree',
+      Link: 'https://digitalbadge.dreamcatcher.asia/b/vuiIVx2CoE'
+    },
 ];
 
 const Table = () => {
