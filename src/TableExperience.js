@@ -7,6 +7,12 @@ const data = [
       Position: 'Intership - mobile App Developer',
       Description: 'Involve in Dr Solehah book Revolusi Bahasa & Asas Tamadun - Multimedia App Project'
     },
+    {
+      Date: '03/01/2024-now',
+      Company: 'ICU Jabatan Perdana Menteri',
+      Position: 'MYStep F41',
+      Description: 'Involve in MYProjek'
+    },
   ];
   
 
