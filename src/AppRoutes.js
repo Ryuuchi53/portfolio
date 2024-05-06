@@ -11,11 +11,11 @@ export default function AppRoutes() {
 
     const allRoutes = useRoutes([
 
-        { path: "/portfolio/", element: <Home/> },
-        { path: "/portfolio/about", element: <About/> },
-        { path: "/portfolio/contact", element: <Contact/> },
-        { path: "/portfolio/project", element: <Project/>,},
-        { path: "/portfolio/*", element: <NoMatch/>}
+        { path: "/portfolio", element: <Home/> },
+        { path: "/about", element: <About/> },
+        { path: "/contact", element: <Contact/> },
+        { path: "/project", element: <Project/>,},
+        { path: "/*", element: <NoMatch/>}
 
     ]);
 
