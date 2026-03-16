@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;400&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Open+Sans:ital,wght@1,700&family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Orbitron&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Open+Sans:ital,wght@1,700&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Orbitron&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
 
 * {
   box-sizing: border-box;
@@ -11,17 +11,31 @@
 }
 
 body {
-    font-family: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    animation: bodyFadeIn 2s;
+  font-family:
+    "Karla",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  animation: bodyFadeIn 2s;
 }
 
 @keyframes bodyFadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 div .home {
@@ -33,7 +47,7 @@ div .home::-webkit-scrollbar {
   display: none;
 }
 
-.icon{
+.icon {
   margin: auto;
   width: 50%;
   padding: 10px 0.5em;
@@ -54,7 +68,9 @@ div .home::-webkit-scrollbar {
   text-decoration: none;
   color: #ffffff;
   font-size: 2em;
-  transition: color 0.5s, transform 0.5s;
+  transition:
+    color 0.5s,
+    transform 0.5s;
   position: relative;
   z-index: 1;
 }
@@ -115,79 +131,79 @@ div .home::-webkit-scrollbar {
   background: linear-gradient(180deg, rgb(0, 52, 70), rgb(0, 78, 104));
   z-index: 1;
   color: white;
-  font-family: 'Major Mono Display', monospace;
+  font-family: "Major Mono Display", monospace;
 }
 
 @media screen and (max-width: 768px) {
   .loader-container h1 {
-    font-size:x-large;
+    font-size: x-large;
   }
 }
 
-  .nav-link {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    color: white;
-    padding: 1.5rem 0;
-    font-family: 'Major Mono Display', monospace;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+.nav-link {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  color: white;
+  padding: 1.5rem 0;
+  font-family: "Major Mono Display", monospace;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
   color: aqua;
 }
 
-  .navigation {
-    height: 60px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    padding: 0.5rem 0rem;
-    background-color: rgb(0, 52, 70);
-    z-index: 2;
+.navigation {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  padding: 0.5rem 0rem;
+  background-color: rgb(0, 52, 70);
+  z-index: 2;
 }
 
-  .page-name {
-    text-decoration: none;
-    color: white;
-    font-size: 1.3rem;
-    margin-left: 1rem;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
+.page-name {
+  text-decoration: none;
+  color: white;
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
 }
 
-  .navigation-menu {
-    margin-left: auto;
+.navigation-menu {
+  margin-left: auto;
 }
 
-  .navigation-menu .u-list {
-    display: flex;
-    padding: 0;
+.navigation-menu .u-list {
+  display: flex;
+  padding: 0;
 }
 
-  .navigation-menu .nav-list {
-    list-style-type: none;
-    margin: 0 1rem;
-    text-decoration: none;
-    display: block;
-    width: 100%;
+.navigation-menu .nav-list {
+  list-style-type: none;
+  margin: 0 1rem;
+  text-decoration: none;
+  display: block;
+  width: 100%;
 }
 
-  .hamburger {
-    border: 0;
-    height: 40px;
-    width: 40px;
-    transform: rotate(0deg);
-    transition: .5s ease-in-out;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    right: 25px;
-    transform: translateY(-50%);
-    display: none;
+.hamburger {
+  border: 0;
+  height: 40px;
+  width: 40px;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  transform: translateY(-50%);
+  display: none;
 }
 
 .hamburger div {
@@ -197,7 +213,7 @@ div .home::-webkit-scrollbar {
   position: absolute;
   left: 0;
   transform: rotate(0deg);
-  transition: .25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 .hamburger div:nth-child(1) {
@@ -226,7 +242,11 @@ div .home::-webkit-scrollbar {
   transform: rotate(-135deg);
 }
 
-div .about, .contact, .home, .project, .no-match {
+div .about,
+.contact,
+.home,
+.project,
+.no-match {
   font-family: Arial, sans-serif;
   background-color: rgb(0, 78, 104);
   padding-top: 3.6rem;
@@ -240,17 +260,22 @@ header {
   padding: 10px;
   text-align: center;
   width: auto;
-  font-family: 'Major Mono Display', monospace;
+  font-family: "Major Mono Display", monospace;
   font-size: 1.1rem;
 }
 
-header, main {
+header,
+main {
   animation: headerSlideDown 1s;
 }
 
 @keyframes headerSlideDown {
-  from {margin-top: -100px;}
-  to {margin-top: 0;}
+  from {
+    margin-top: -100px;
+  }
+  to {
+    margin-top: 0;
+  }
 }
 
 section h2 {
@@ -259,12 +284,13 @@ section h2 {
   padding-top: 20px;
 }
 
-.complex-table a, section a {
+.complex-table a,
+section a {
   text-decoration: none;
   color: rgb(0, 145, 193);
   white-space: -moz-pre-wrap;
-  white-space: -pre-wrap; 
-  white-space: -o-pre-wrap;  
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
   word-wrap: break-word;
 }
 
@@ -316,14 +342,27 @@ section {
   border-radius: 5px;
   background-color: whitesmoke;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.543);
-  font-family: 'Major Mono Display', monospace;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Major Mono Display", monospace;
+  font-family: "Orbitron", sans-serif;
   word-spacing: 3px;
   letter-spacing: 2px;
 }
 
-header h1, section h2, section h3, section p, footer p {
+header h1,
+section h2,
+section h3,
+section p,
+footer p {
   margin: 1em 0;
+}
+
+.main-text {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5px;
+  background-color: rgb(0, 52, 70);
+  color: white;
 }
 
 .table-container {
@@ -369,7 +408,7 @@ header h1, section h2, section h3, section p, footer p {
   .complex-table tbody,
   .complex-table th,
   .complex-table td,
-  .complex-table tr, 
+  .complex-table tr,
   .complex-table a {
     display: block;
     font-size: small;
@@ -430,8 +469,8 @@ header h1, section h2, section h3, section p, footer p {
   font-size: 18px;
 }
 
-@media screen and (max-width: 768px){
-  .item-list{
+@media screen and (max-width: 768px) {
+  .item-list {
     font-size: small;
   }
   .item-name {
@@ -446,7 +485,7 @@ header h1, section h2, section h3, section p, footer p {
   section h3 {
     font-size: medium;
   }
-  section p{
+  section p {
     font-size: small;
   }
 }
@@ -464,58 +503,72 @@ footer {
 }
 
 @keyframes footerSlideUp {
-    from {margin-bottom: -100px;}
-    to {margin-bottom: 0;}
+  from {
+    margin-bottom: -100px;
+  }
+  to {
+    margin-bottom: 0;
+  }
 }
 
-  @media screen and (max-width: 768px) {
-    .hamburger {
-      display: block;
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navigation-menu .u-list {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navigation-menu .u-list {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 77px);
+    background-image: linear-gradient(180deg, rgb(0, 52, 70), rgb(0, 78, 104));
+    animation: headerSlideDown2 1s;
+  }
+
+  @keyframes headerSlideDown2 {
+    from {
+      height: calc(0vh);
     }
-}
-
-  @media screen and (max-width: 768px) {
-    .navigation-menu .u-list {
-      display: none;
-    }
-}
-
-  @media screen and (max-width: 768px) {
-    .navigation-menu .u-list {
-      position: absolute;
-      top: 55px;
-      left: 0;
-      flex-direction: column;
-      width: 100%;
+    to {
       height: calc(100vh - 77px);
-      background-image: linear-gradient(180deg, rgb(0, 52, 70), rgb(0, 78, 104));
-      animation: headerSlideDown2 1s;
     }
+  }
 
-    @keyframes headerSlideDown2 {
-      from {height: calc(0vh);}
-      to {height: calc(100vh - 77px);}
-    }
+  .navigation-menu .nav-list {
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    padding: 0.1rem 0;
+    transition:
+      background-color 0.5s ease,
+      transform 0.5s ease;
+    animation: bodyFadeIn 3s;
+  }
 
-    .navigation-menu .nav-list {
-      text-align: center;
-      margin: 0;
-      width: 100%;
-      padding: 0.1rem 0;
-      transition: background-color 0.5s ease, transform 0.5s ease;
-      animation: bodyFadeIn 3s;
-    }
-
-    .navigation-menu .nav-list:hover {
-      background-image: linear-gradient(180deg, rgb(0, 106, 141), rgb(0, 93, 123));
-      transform: scale(1.1);
-    }
+  .navigation-menu .nav-list:hover {
+    background-image: linear-gradient(
+      180deg,
+      rgb(0, 106, 141),
+      rgb(0, 93, 123)
+    );
+    transform: scale(1.1);
+  }
 }
 
-  @media screen and (max-width: 768px) {
-    .navigation-menu .u-list {
-      /* previous styles */
-      display: none;
+@media screen and (max-width: 768px) {
+  .navigation-menu .u-list {
+    /* previous styles */
+    display: none;
   }
 }
 
