@@ -1,47 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { db } from "./firebase";
+import { ref, get } from "firebase/database";
 
-const data = [
-    {
-      Date: '2012-2016',
-      'School Name': 'SMK Sungai Besar',
-      'Field Of Study': 'SPM - Pure Science'
-    },
-    {
-      Date: '2017-2018',
-      'School Name': 'Kolej Matrikulasi Negeri Sembilan',
-      'Field Of Study': 'Matriculation Programme - Science PST Module 2'
-    },
-    {
-      Date: '2018-2023',
-      'School Name': 'Universiti Kebangsaan Malaysia',
-      'Field Of Study': 'Bachelor of Software Engineering With Honours (Information System Development)'
-    },
-  ];
-  
+function EducationsTable() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const columnOrder = ["date", "field_of_study", "school_name"];
 
-const Table = () => {
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const snapshot = await get(ref(db, "projects/educations"));
+        console.log(snapshot.val());
+
+        if (snapshot.exists()) {
+          const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+            id,
+            date: value.date,
+            school_name: value.school_name,
+            field_of_study: value.field_of_study,
+          }));
+
+          setProjects(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      setLoading(false);
+    };
+    fetchProjects();
+  }, []);
+
+  if (loading) return <p>loading...</p>;
+
   return (
-    <div className='table-container' id='first'>
+    <div className="table-container">
       <table className="complex-table">
-      <thead>
-        <tr>
-          {Object.keys(data[0]).map((key, index) => (
-            <th key={index}>{key}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, index) => (
-          <tr key={index}>
-            {Object.values(row).map((value, i) => (
-              <td key={i}>{value}</td>
+        <thead>
+          <tr>
+            {columnOrder.map((key, index) => (
+              <th key={index}>{key}</th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          {projects.map((row) => (
+            <tr key={row.id}>
+              {columnOrder.map((key, i) => (
+                <td key={i} data-column={key}>{row[key]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-};
+}
 
-export default Table;
+export default EducationsTable;

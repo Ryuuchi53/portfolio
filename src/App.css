@@ -400,27 +400,6 @@ header h1, section h2, section h3, section p, footer p {
     word-wrap: break-word;
     content: attr(data-column);
   }
-
-  #first .complex-table td:nth-of-type(1):before { content: "Date"; }
-  #first .complex-table td:nth-of-type(2):before { content: "School Name"; }
-  #first .complex-table td:nth-of-type(3):before { content: "Field Of Study"; }
-
-  #second .complex-table td:nth-of-type(1):before { content: "Date"; }
-  #second .complex-table td:nth-of-type(2):before { content: "Name"; }
-  #second .complex-table td:nth-of-type(3):before { content: "Field"; }
-
-  #third .complex-table td:nth-of-type(1):before { content: "Date"; }
-  #third .complex-table td:nth-of-type(2):before { content: "Name"; }
-  #third .complex-table td:nth-of-type(3):before { content: "Link"; }
-
-  #fourth .complex-table td:nth-of-type(1):before { content: "Date"; }
-  #fourth .complex-table td:nth-of-type(2):before { content: "Company"; }
-  #fourth .complex-table td:nth-of-type(3):before { content: "Position"; }
-  #fourth .complex-table td:nth-of-type(4):before { content: "Description"; }
-
-  #fifth .complex-table td:nth-of-type(1):before { content: "Project"; }
-  #fifth .complex-table td:nth-of-type(2):before { content: "Link"; }
-
 }
 
 .App {

@@ -1,37 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { db } from "./firebase";
+import { ref, get } from "firebase/database";
 
-const data = [
-    {
-      'Name': 'Portfolio Website',
-      Link: 'https://github.com/Ryuuchi53/portfolio'
-    },
-];
+function ProjectsTable() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const columnOrder = ["name", "link"];
 
-const Table = () => {
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const snapshot = await get(ref(db, "projects/projects"));
+        console.log(snapshot.val());
+
+        if (snapshot.exists()) {
+          const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+            id,
+            name: value.name,
+            link: value.link,
+          }));
+
+          setProjects(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      setLoading(false);
+    };
+    fetchProjects();
+  }, []);
+
+  if (loading) return <p>loading...</p>;
+
   return (
-    <div className='table-container' id='fifth'>
+    <div className="table-container">
       <table className="complex-table">
-      <thead>
-        <tr>
-          {Object.keys(data[0]).map((key, index) => (
-            <th key={index}>{key}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, index) => (
-          <tr key={index}>
-            {Object.entries(row).map(([key, value], i) => (
-              <td key={i}>
-                {key === 'Link' ? <a href={value} target="_blank" rel="noopener noreferrer">{value}</a> : value}
-              </td>
+        <thead>
+          <tr>
+            {columnOrder.map((key, index) => (
+              <th key={index}>{key}</th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          {projects.map((row) => (
+            <tr key={row.id}>
+              {columnOrder.map((key, i) => (
+                <td key={i} data-column={key}>
+                  {key === "link" ? (
+                    <a href={row[key]} target="_blank" rel="noopener noreferrer">
+                      {row[key]}
+                    </a>
+                  ) : (
+                    row[key]
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-};
+}
 
-export default Table;
+export default ProjectsTable;
