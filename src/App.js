@@ -6,6 +6,13 @@ import "./App.css";
 import Footer from "./Footer.js";
 import AppRoutes from './AppRoutes.js';
 import Typing from "./TypingText.js";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fontsource/karla";
+import "@fontsource/dancing-script";
+import "@fontsource/major-mono-display";
+import "@fontsource/open-sans";
+import "@fontsource/orbitron";
+import "@fontsource/pacifico";
 
 export default function App() {
 

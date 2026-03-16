@@ -15,7 +15,7 @@ export default function AppRoutes() {
         { path: "/about", element: <About/> },
         { path: "/contact", element: <Contact/> },
         { path: "/project", element: <Project/>,},
-        { path: "/*", element: <NoMatch/>}
+        { path: "*", element: <NoMatch/>}
 
     ]);
 
