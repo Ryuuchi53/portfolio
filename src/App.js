@@ -1,6 +1,4 @@
-import {
-  BrowserRouter as Router, Link 
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./Footer.js";
@@ -35,7 +33,7 @@ export default function App() {
             <Typing/>
           </div>
         ) : (
-          <Router>
+          <>
             <nav className='navigation'>
               <a className='page-name' href='/portfolio'>Portfolio</a>
               <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={() => {
@@ -51,7 +49,7 @@ export default function App() {
               }>
                 <ul className='u-list'>
                   <li className='nav-list'>
-                    <Link className='nav-link' to="/portfolio" onClick={() => {
+                    <Link className='nav-link' to="/" onClick={() => {
                 setIsNavExpanded(!isNavExpanded);
                 setIsOpen(!isOpen);
               }}>Home</Link>
@@ -79,7 +77,7 @@ export default function App() {
             </nav>
             <AppRoutes/>
             <Footer/>
-          </Router>
+          </>
         )}
     </div>
   );
