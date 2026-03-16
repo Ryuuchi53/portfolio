@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
-import { ref, get } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 function ExperiencesTable() {
   const [projects, setProjects] = useState([]);
@@ -8,28 +8,27 @@ function ExperiencesTable() {
   const columnOrder = ["date", "position", "company", "description"];
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const snapshot = await get(ref(db, "projects/experiences"));
-        console.log(snapshot.val());
+    const experiencesRef = ref(db, "projects/experiences");
 
-        if (snapshot.exists()) {
-          const data = Object.entries(snapshot.val()).map(([id, value]) => ({
-            id,
-            date: value.date,
-            position: value.position,
-            company: value.company,
-            description: value.description,
-          }));
-
-          setProjects(data);
-        }
-      } catch (error) {
-        console.error(error);
+    // Subscribe to real-time updates
+    const unsubscribe = onValue(experiencesRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          date: value.date,
+          position: value.position,
+          company: value.company,
+          description: value.description,
+        }));
+        setProjects(data);
+      } else {
+        setProjects([]);
       }
       setLoading(false);
-    };
-    fetchProjects();
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
 
   if (loading) return <p>loading...</p>;

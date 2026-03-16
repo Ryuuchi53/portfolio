@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase"; // your Firebase config
-import { ref, get } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 function SkillsList() {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchSkills = async () => {
-      try {
-        const snapshot = await get(ref(db, "projects/skills")); // adjust the path
-        if (snapshot.exists()) {
-          // Convert Firebase object to array
-          const data = Object.entries(snapshot.val()).map(([id, value]) => ({
-            id,
-            name: value.name,
-            list: value.list,
-          }));
-          setSkills(data);
-        }
-      } catch (error) {
-        console.error(error);
+    const skillsRef = ref(db, "projects/skills");
+
+    // Subscribe to real-time updates
+    const unsubscribe = onValue(skillsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          name: value.name,
+          list: value.list,
+        }));
+        setSkills(data);
+      } else {
+        setSkills([]);
       }
       setLoading(false);
-    };
+    });
 
-    fetchSkills();
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
 
   if (loading) return <p>loading...</p>;

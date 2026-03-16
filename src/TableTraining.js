@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
-import { ref, get } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 function TrainingsTable() {
   const [projects, setProjects] = useState([]);
@@ -8,27 +8,26 @@ function TrainingsTable() {
   const columnOrder = ["date", "programme_name", "field"];
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const snapshot = await get(ref(db, "projects/trainings"));
-        console.log(snapshot.val());
+    const trainingsRef = ref(db, "projects/trainings");
 
-        if (snapshot.exists()) {
-          const data = Object.entries(snapshot.val()).map(([id, value]) => ({
-            id,
-            date: value.date,
-            programme_name: value.programme_name,
-            field: value.field,
-          }));
-
-          setProjects(data);
-        }
-      } catch (error) {
-        console.error(error);
+    // Subscribe to real-time updates
+    const unsubscribe = onValue(trainingsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          date: value.date,
+          programme_name: value.programme_name,
+          field: value.field,
+        }));
+        setProjects(data);
+      } else {
+        setProjects([]);
       }
       setLoading(false);
-    };
-    fetchProjects();
+    });
+
+    // Cleanup subscription when component unmounts
+    return () => unsubscribe();
   }, []);
 
   if (loading) return <p>loading...</p>;

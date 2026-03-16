@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
-import { ref, get } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 function ProjectsTable() {
   const [projects, setProjects] = useState([]);
@@ -8,26 +8,25 @@ function ProjectsTable() {
   const columnOrder = ["name", "link"];
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const snapshot = await get(ref(db, "projects/projects"));
-        console.log(snapshot.val());
+    const projectsRef = ref(db, "projects/projects");
 
-        if (snapshot.exists()) {
-          const data = Object.entries(snapshot.val()).map(([id, value]) => ({
-            id,
-            name: value.name,
-            link: value.link,
-          }));
-
-          setProjects(data);
-        }
-      } catch (error) {
-        console.error(error);
+    // Subscribe to real-time updates
+    const unsubscribe = onValue(projectsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          name: value.name,
+          link: value.link,
+        }));
+        setProjects(data);
+      } else {
+        setProjects([]);
       }
       setLoading(false);
-    };
-    fetchProjects();
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
 
   if (loading) return <p>loading...</p>;
@@ -48,7 +47,7 @@ function ProjectsTable() {
             <tr key={row.id}>
               {columnOrder.map((key, i) => (
                 <td key={i} data-column={key}>
-                  {key === "link" ? (
+                  {key === "link" && row[key] ? (
                     <a href={row[key]} target="_blank" rel="noopener noreferrer">
                       {row[key]}
                     </a>
