@@ -34,7 +34,7 @@ export default function App() {
         ) : (
           <>
             <nav className='navigation'>
-              <a className='page-name' href='/'>Portfolio</a>
+              <a className='page-name' href='/portfolio'>Portfolio</a>
               <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={() => {
                 setIsOpen(!isOpen);
                 setIsNavExpanded(!isNavExpanded);
