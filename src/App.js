@@ -29,7 +29,6 @@ export default function App() {
       {
         loading ? (
           <div className='loader-container'>
-            {/* <div className='spinner'></div> */}
             <Typing/>
           </div>
         ) : (
