@@ -248,6 +248,44 @@ div .about,
   min-height: 100vh;
 }
 
+.resume-style {
+  font-family: Arial, Helvetica, sans-serif !important;
+  box-shadow: none !important;
+  background-color: white !important;
+}
+
+/* If the shadow is applied to the ul */
+.resume-style .list {
+  box-shadow: none !important;
+}
+
+/* If individual list items have shadow */
+.resume-style .list-item {
+  box-shadow: none !important;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.resumeButton {
+  padding: 12px 28px;
+  cursor: pointer;
+  background-color: white;
+  color: rgb(0, 78, 104);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.resumeButton:hover {
+  background-color: aqua;
+  color: rgb(0, 78, 104);
+}
+
 header {
   background-image: linear-gradient(180deg, rgb(0, 52, 70), rgb(0, 78, 104));
   color: white;
