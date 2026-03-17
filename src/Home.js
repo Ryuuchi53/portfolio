@@ -4,7 +4,6 @@ import { ref, onValue } from 'firebase/database';
 import logo from './logo.svg';
 import { useReactToPrint } from "react-to-print";
 import ResumeDocument from "./ResumeDocument";
-import { PDFDownloadLink, Document, Page, Text, Image, StyleSheet } from '@react-pdf/renderer';
 
 export default function Home() {
   const [content, setContent] = useState(null);
@@ -36,30 +35,7 @@ export default function Home() {
   if (loading) return <p>Loading...</p>;
   if (!content) return <p>No content available.</p>;
 
-  // Simple mobile check
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-  // PDF styles
-  const styles = StyleSheet.create({
-    page: { padding: 30, fontSize: 12 },
-    header: { fontSize: 18, marginBottom: 10 },
-    sectionTitle: { fontSize: 14, marginBottom: 5 },
-    text: { marginBottom: 5 },
-    logo: { width: 50, height: 50, marginTop: 10 }
-  });
-
-  const MobilePDF = () => (
-    <Document>
-      <Page style={styles.page}>
-        <Text style={styles.header}>{content.header}</Text>
-        <Text style={styles.sectionTitle}>{content.sectionTitle}</Text>
-        {content.text.map((line, index) => (
-          <Text style={styles.text} key={index}>{line}</Text>
-        ))}
-        <Image style={styles.logo} src={logo} />
-      </Page>
-    </Document>
-  );
 
   return (
     <div className="home">
@@ -81,27 +57,18 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      {/* Desktop print */}
       <div style={{ display: "none" }}>
         <ResumeDocument ref={resumeRef} />
       </div>
-
-      <div className="button-container">
-        {isMobile ? (
-          <PDFDownloadLink document={<MobilePDF />} fileName="Muhammad_Adam_Resume.pdf">
-            {({ loading }) => (
-              <button className="resumeButton" disabled={loading}>
-                {loading ? 'Preparing...' : 'Download CV'}
-              </button>
-            )}
-          </PDFDownloadLink>
-        ) : (
+      {isMobile ? (
+        <div></div>
+      ) : (
+        <div className="button-container">
           <button className="resumeButton" onClick={handlePrint}>
             Download CV
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
