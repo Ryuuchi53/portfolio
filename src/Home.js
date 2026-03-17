@@ -4,7 +4,7 @@ import { ref, onValue } from 'firebase/database';
 import logo from './logo.svg';
 import { useReactToPrint } from "react-to-print";
 import ResumeDocument from "./ResumeDocument";
-import { PDFDownloadLink, Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
+import { PDFDownloadLink, Document, Page, Text, Image, StyleSheet } from '@react-pdf/renderer';
 
 export default function Home() {
   const [content, setContent] = useState(null);
