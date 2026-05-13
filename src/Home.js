@@ -40,11 +40,11 @@ export default function Home() {
   return (
     <div className="home">
       <header>
-        <h1>{content.header}</h1>
+        <h1>Welcome To My Website</h1>
       </header>
       <main id='home'>
         <section>
-          <h2>{content.sectionTitle}</h2>
+          <h2>How I build this website</h2>
           <div className='main-text'>
             <ul className="list">
               {content.text.map((line, index) => (
