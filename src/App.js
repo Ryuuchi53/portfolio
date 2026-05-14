@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./Footer.js";
@@ -11,6 +10,7 @@ import "@fontsource/major-mono-display";
 import "@fontsource/open-sans";
 import "@fontsource/orbitron";
 import "@fontsource/pacifico";
+import { NavLink } from 'react-router-dom';
 
 export default function App() {
 
@@ -29,7 +29,7 @@ export default function App() {
       {
         loading ? (
           <div className='loader-container'>
-            <Typing/>
+            <Typing />
           </div>
         ) : (
           <>
@@ -38,7 +38,7 @@ export default function App() {
               <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={() => {
                 setIsOpen(!isOpen);
                 setIsNavExpanded(!isNavExpanded);
-                }}>
+              }}>
                 <div></div>
                 <div></div>
                 <div></div>
@@ -48,34 +48,42 @@ export default function App() {
               }>
                 <ul className='u-list'>
                   <li className='nav-list'>
-                    <Link className='nav-link' to="/" onClick={() => {
-                setIsNavExpanded(!isNavExpanded);
-                setIsOpen(!isOpen);
-              }}>Home</Link>
+                    <NavLink className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    } to="/" onClick={() => {
+                      setIsNavExpanded(!isNavExpanded);
+                      setIsOpen(!isOpen);
+                    }}>Home</NavLink>
                   </li>
                   <li className='nav-list'>
-                    <Link className='nav-link' to="/about" onClick={() => {
-                setIsNavExpanded(!isNavExpanded);
-                setIsOpen(!isOpen);
-              }}>About me</Link>
+                    <NavLink className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    } to="/about" onClick={() => {
+                      setIsNavExpanded(!isNavExpanded);
+                      setIsOpen(!isOpen);
+                    }}>About me</NavLink>
                   </li>
                   <li className='nav-list'>
-                    <Link className='nav-link' to="/project" onClick={() => {
-                setIsNavExpanded(!isNavExpanded);
-                setIsOpen(!isOpen);
-              }}>Project</Link>
+                    <NavLink className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    } to="/project" onClick={() => {
+                      setIsNavExpanded(!isNavExpanded);
+                      setIsOpen(!isOpen);
+                    }}>Project</NavLink>
                   </li>
                   <li className='nav-list'>
-                    <Link className='nav-link' to="/contact" onClick={() => {
-                setIsNavExpanded(!isNavExpanded);
-                setIsOpen(!isOpen);
-              }}>Contact</Link>
+                    <NavLink className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    } to="/contact" onClick={() => {
+                      setIsNavExpanded(!isNavExpanded);
+                      setIsOpen(!isOpen);
+                    }}>Contact</NavLink>
                   </li>
                 </ul>
-              </div>          
+              </div>
             </nav>
-            <AppRoutes/>
-            <Footer/>
+            <AppRoutes />
+            <Footer />
           </>
         )}
     </div>
