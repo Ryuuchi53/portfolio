@@ -11,7 +11,6 @@ export default function Home() {
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showResume, setShowResume] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
   const [pdfMode, setPdfMode] = useState(false);
   const resumeRef = useRef();
 
@@ -22,48 +21,89 @@ export default function Home() {
 
   const handlePreviewPDF = async () => {
     setShowResume(true);
-    setIsGenerating(true);
     setPdfMode(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    await document.fonts.ready;
+    await new Promise(requestAnimationFrame);
+    await new Promise(requestAnimationFrame);
 
     const element = resumeRef.current;
+
+    // 🔧 SAVE ORIGINAL STYLES
+    const originalTransform = element.style.transform;
+    const originalWidth = element.style.width;
+
+    // 🔧 FORCE STABLE LAYOUT (BEFORE CAPTURE)
+    element.style.transform = "scale(1)";
+    element.style.width = "794px";
 
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
       backgroundColor: "#ffffff",
       scrollY: 0,
-      windowWidth: element.scrollWidth,
-      windowHeight: element.scrollHeight,
+      windowWidth: element.offsetWidth,
+      windowHeight: element.offsetHeight,
+      letterRendering: true,
     });
 
+    // 🔧 RESTORE ORIGINAL STYLES (AFTER CAPTURE)
+    element.style.transform = originalTransform;
+    element.style.width = originalWidth;
+
     setPdfMode(false);
-    setIsGenerating(false);
     setShowResume(false);
 
-    const imgData = canvas.toDataURL("image/png");
-
-    const pdf = new jsPDF("p", "mm", "A4");
+    const pdf = new jsPDF("p", "mm", "a4");
 
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
 
     const imgWidth = pdfWidth;
-    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+    const pageHeightPx = (canvas.width * pdfHeight) / pdfWidth;
 
-    let heightLeft = imgHeight;
+    const overlap = 2; // small overlap is actually better than big one
+
+    const pxPageHeight = pageHeightPx;
+
     let position = 0;
+    let pageIndex = 0;
 
-    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    while (position < canvas.height) {
+      const pageCanvas = document.createElement("canvas");
+      pageCanvas.width = canvas.width;
 
-    heightLeft -= pdfHeight;
+      const remainingHeight = canvas.height - position;
 
-    while (heightLeft > 0) {
-      position -= pdfHeight; // 🔥 IMPORTANT FIX (negative shift)
-      pdf.addPage();
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pdfHeight;
+      const sliceHeight = Math.min(pxPageHeight, remainingHeight);
+
+      pageCanvas.height = sliceHeight;
+
+      const ctx = pageCanvas.getContext("2d");
+
+      // IMPORTANT: floor the values to avoid subpixel blur
+      ctx.drawImage(
+        canvas,
+        0,
+        Math.floor(position),
+        canvas.width,
+        Math.floor(sliceHeight),
+        0,
+        0,
+        canvas.width,
+        sliceHeight
+      );
+
+      const imgData = pageCanvas.toDataURL("image/png");
+
+      const imgHeight = (sliceHeight * pdfWidth) / canvas.width;
+
+      if (pageIndex > 0) pdf.addPage();
+
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+
+      position += pxPageHeight - overlap; // subtle overlap, not large
+      pageIndex++;
     }
 
     pdf.save("Muhammad_Adam_Resume.pdf");

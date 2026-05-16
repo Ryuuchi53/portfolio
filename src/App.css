@@ -303,10 +303,10 @@ div .about,
   margin: 0 !important;
   padding: 0 !important;
   transform: none !important;
-
-  .skill {
-    margin-bottom: 250px;
-  }
+  position: absolute !important;
+  left: -9999px !important;
+  top: 0 !important;
+  width: 794px !important;
 }
 
 .pdf-mode * {
