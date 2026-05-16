@@ -299,6 +299,21 @@ div .about,
   box-shadow: none !important;
 }
 
+.pdf-mode {
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+
+  .skill {
+    margin-bottom: 250px;
+  }
+}
+
+.pdf-mode * {
+  animation: none !important;
+  transition: none !important;
+}
+
 .button-container {
   display: flex;
   justify-content: center;

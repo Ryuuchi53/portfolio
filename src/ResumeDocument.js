@@ -58,7 +58,7 @@ const ResumeDocument = forwardRef((props, ref) => {
                     <h2>Certification</h2>
                     <TableCert />
                 </section>
-                <section className="resume-style">
+                <section className="resume-style skill">
                     <h2>Skills</h2>
                     <SkillList />
                 </section>
