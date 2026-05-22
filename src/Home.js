@@ -166,7 +166,7 @@ export default function Home() {
       </div>
 
       <div style={{ display: showResume ? "block" : "none" }} className={pdfMode ? "pdf-mode" : ""}>
-        <ResumeDocument ref={resumeRef} />
+        <ResumeDocument ref={resumeRef} pdfMode={pdfMode} />
       </div>
     </div>
   );

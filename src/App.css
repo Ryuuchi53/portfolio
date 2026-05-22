@@ -284,8 +284,9 @@ div .about,
     text-align: left;
   }
 
-  .resume-header-text {
-    margin-left: 1.5rem;
+  .pdf-mode-content section {
+    margin: 30px !important;
+    width: auto !important;
   }
 }
 
@@ -524,6 +525,10 @@ footer p {
     padding-right: 10px;
     word-wrap: break-word;
     content: attr(data-column);
+  }
+
+  .pdf-mode-content .complex-table td:before {
+    display: none;
   }
 }
 

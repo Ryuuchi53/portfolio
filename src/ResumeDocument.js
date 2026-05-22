@@ -9,6 +9,7 @@ import SkillList from './SkillList.js';
 import TableRef from './TableRef.js';
 
 const ResumeDocument = forwardRef((props, ref) => {
+    const { pdfMode = false } = props;
     const [headerData, setHeaderData] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -34,7 +35,7 @@ const ResumeDocument = forwardRef((props, ref) => {
     const publicUrl = headerData.image;
 
     return (
-        <div ref={ref}>
+        <div ref={ref} className={pdfMode ? "pdf-mode-content" : ""}>
             <header className="resume-style">
                 <div className="resume-header">
                     <img src={publicUrl} alt="Profile" className="profile-image" />
