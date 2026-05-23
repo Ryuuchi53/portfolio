@@ -175,7 +175,7 @@ export default function Home() {
   }, []);
 
   if (loading) return null;
-  if (!headerData || !headerData || !educations || !skills || !trainings || !certs || !experiences || !references) return null;
+  if (!headerData || !educations || !skills || !trainings || !certs || !experiences || !references) return null;
 
   const handlePreviewPDF = async () => {
     if (!headerData || !educations || !skills || !trainings || !certs || !experiences || !references) return;
