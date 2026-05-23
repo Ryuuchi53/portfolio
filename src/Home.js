@@ -1,117 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from "react";
 import { db } from './firebase';
 import { ref, onValue } from 'firebase/database';
 import logo from './logo.svg';
-import { useReactToPrint } from "react-to-print";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import ResumeDocument from "./ResumeDocument";
+import Resume from "./Resume";
+import { pdf } from '@react-pdf/renderer';
 
 export default function Home() {
   const [content, setContent] = useState(null);
+  const [headerData, setHeaderData] = useState(null);
+  const [educations, setEducations] = useState([]);
+  const [trainings, setTrainings] = useState([]);
+  const [certs, setCerts] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [experiences, setExperiences] = useState([]);
+  const [references, setReferences] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showResume, setShowResume] = useState(false);
-  const [pdfMode, setPdfMode] = useState(false);
-  const resumeRef = useRef();
-
-  const handlePrint = useReactToPrint({
-    contentRef: resumeRef,
-    documentTitle: "Muhammad_Adam_Resume"
-  });
-
-  const handlePreviewPDF = async () => {
-    setShowResume(true);
-    setPdfMode(true);
-
-    await document.fonts.ready;
-    await new Promise(requestAnimationFrame);
-    await new Promise(requestAnimationFrame);
-
-    const element = resumeRef.current;
-
-    // 🔧 SAVE ORIGINAL STYLES
-    const originalTransform = element.style.transform;
-    const originalWidth = element.style.width;
-
-    // 🔧 FORCE STABLE LAYOUT (BEFORE CAPTURE)
-    element.style.transform = "scale(1)";
-    element.style.width = "794px";
-
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      useCORS: true,
-      backgroundColor: "#ffffff",
-      scrollY: 0,
-      windowWidth: element.offsetWidth,
-      windowHeight: element.offsetHeight,
-      letterRendering: true,
-    });
-
-    // 🔧 RESTORE ORIGINAL STYLES (AFTER CAPTURE)
-    element.style.transform = originalTransform;
-    element.style.width = originalWidth;
-
-    setPdfMode(false);
-    setShowResume(false);
-
-    const pdf = new jsPDF("p", "mm", "a4");
-
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-    const imgWidth = pdfWidth;
-    const pageHeightPx = (canvas.width * pdfHeight) / pdfWidth;
-
-    const overlap = 2; // small overlap is actually better than big one
-
-    const pxPageHeight = pageHeightPx;
-
-    let position = 0;
-    let pageIndex = 0;
-
-    while (position < canvas.height) {
-      const pageCanvas = document.createElement("canvas");
-      pageCanvas.width = canvas.width;
-
-      const remainingHeight = canvas.height - position;
-
-      const sliceHeight = Math.min(pxPageHeight, remainingHeight);
-
-      pageCanvas.height = sliceHeight;
-
-      const ctx = pageCanvas.getContext("2d");
-
-      // IMPORTANT: floor the values to avoid subpixel blur
-      ctx.drawImage(
-        canvas,
-        0,
-        Math.floor(position),
-        canvas.width,
-        Math.floor(sliceHeight),
-        0,
-        0,
-        canvas.width,
-        sliceHeight
-      );
-
-      const imgData = pageCanvas.toDataURL("image/png");
-
-      const imgHeight = (sliceHeight * pdfWidth) / canvas.width;
-
-      if (pageIndex > 0) pdf.addPage();
-
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-
-      position += pxPageHeight - overlap; // subtle overlap, not large
-      pageIndex++;
-    }
-
-    pdf.save("Muhammad_Adam_Resume.pdf");
-  };
 
   useEffect(() => {
     const homeRef = ref(db, 'projects/home');
-
     const unsubscribe = onValue(homeRef, (snapshot) => {
       const data = snapshot.val();
       if (snapshot.exists()) {
@@ -126,10 +32,161 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (!content) return <p>No content available.</p>;
+  /* HEADER DATA */
 
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  useEffect(() => {
+    const headerRef = ref(db, "projects/header");
+    const unsubscribe = onValue(headerRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const firstKey = Object.keys(data)[0];
+
+        setHeaderData(data[firstKey]);
+      } else {
+        setHeaderData(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const educationRef = ref(db, "projects/educations");
+    const unsubscribe = onValue(educationRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          date: value.date,
+          school_name: value.school_name,
+          field_of_study: value.field_of_study,
+        }));
+        setEducations(data);
+      } else {
+        setEducations([]);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const skillsRef = ref(db, "projects/skills");
+    const unsubscribe = onValue(skillsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          name: value.name,
+          list: value.list,
+        }));
+        setSkills(data);
+      } else {
+        setSkills([]);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const trainingsRef = ref(db, "projects/trainings");
+    const unsubscribe = onValue(trainingsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          date: value.date,
+          programme_name: value.programme_name,
+          field: value.field,
+        }));
+        setTrainings(data);
+      } else {
+        setTrainings([]);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const certificationsRef = ref(db, "projects/certifications");
+    const unsubscribe = onValue(certificationsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          date: value.date,
+          name: value.name,
+          link: value.link,
+        }));
+        setCerts(data);
+      } else {
+        setCerts([]);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const experiencesRef = ref(db, "projects/experiences");
+    const unsubscribe = onValue(experiencesRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          date: value.date,
+          position: value.position,
+          company: value.company,
+          description: value.description,
+        }));
+        setExperiences(data);
+      } else {
+        setExperiences([]);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const referencesRef = ref(db, "projects/references");
+
+    const unsubscribe = onValue(referencesRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = Object.entries(snapshot.val()).map(([id, value]) => ({
+          id,
+          name: value.name,
+          position: value.position,
+          company: value.company,
+          address: value.address,
+          email: value.email,
+          office_number: value.office_number,
+        }));
+        setReferences(data);
+      } else {
+        setReferences([]);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) return null;
+  if (!headerData || !headerData || !educations || !skills || !trainings || !certs || !experiences || !references) return null;
+
+  const handlePreviewPDF = async () => {
+    if (!headerData || !educations || !skills || !trainings || !certs || !experiences || !references) return;
+    const blob = await pdf(
+      <Resume headerData={headerData} educations={educations} skills={skills} trainings={trainings} certs={certs} experiences={experiences} references={references} b/>
+    ).toBlob();
+
+    const url = URL.createObjectURL(blob);
+
+    window.open(url, '_blank');
+  };
 
   return (
     <div className="home">
@@ -154,19 +211,9 @@ export default function Home() {
       </main>
 
       <div className="button-container">
-        {isMobile ? (
-          <button className="resumeButton" onClick={handlePreviewPDF}>
-            Download CV
-          </button>
-        ) : (
-          <button className="resumeButton" onClick={handlePrint}>
-            Download CV
-          </button>
-        )}
-      </div>
-
-      <div style={{ display: showResume ? "block" : "none" }} className={pdfMode ? "pdf-mode" : ""}>
-        <ResumeDocument ref={resumeRef} pdfMode={pdfMode} />
+        <button className="resumeButton" onClick={handlePreviewPDF}>
+          My Resume
+        </button>
       </div>
     </div>
   );
