@@ -180,7 +180,7 @@ export default function Home() {
   const handlePreviewPDF = async () => {
     if (!headerData || !educations || !skills || !trainings || !certs || !experiences || !references) return;
     const blob = await pdf(
-      <Resume headerData={headerData} educations={educations} skills={skills} trainings={trainings} certs={certs} experiences={experiences} references={references} b/>
+      <Resume headerData={headerData} educations={educations} skills={skills} trainings={trainings} certs={certs} experiences={experiences} references={references} />
     ).toBlob();
 
     const url = URL.createObjectURL(blob);

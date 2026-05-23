@@ -315,8 +315,8 @@ export default function Resume({ headerData, educations, skills, trainings, cert
                         Skills
                     </Text>
                     {skills.map((skill) => (
-                        <View style={styles.list}>
-                            <View key={skill.id} style={styles.listItem}>
+                        <View key={skill.id} style={styles.list}>
+                            <View style={styles.listItem}>
                                 <Text style={styles.itemName}>{skill.name}</Text>
                                 <Text style={styles.itemList}>{skill.list}</Text>
                             </View>
