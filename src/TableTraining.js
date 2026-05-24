@@ -5,7 +5,7 @@ import { ref, onValue } from "firebase/database";
 function TrainingsTable() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const columnOrder = ["date", "programme_name", "field"];
+  const columnOrder = ["date", "programme_name", "field", "cert"];
 
   useEffect(() => {
     const trainingsRef = ref(db, "projects/trainings");
@@ -18,6 +18,7 @@ function TrainingsTable() {
           date: value.date,
           programme_name: value.programme_name,
           field: value.field,
+          cert: value.cert,
         }));
         setProjects(data);
       } else {
@@ -47,7 +48,15 @@ function TrainingsTable() {
           {projects.map((row) => (
             <tr key={row.id}>
               {columnOrder.map((key, i) => (
-                <td key={i} data-column={key}>{row[key]}</td>
+                <td key={i} data-column={key}>
+                  {key === "cert" && row[key] ? (
+                    <a href={row[key]} target="_blank" rel="noopener noreferrer">
+                      {row[key]}
+                    </a>
+                  ) : (
+                    row[key]
+                  )}
+                </td>
               ))}
             </tr>
           ))}

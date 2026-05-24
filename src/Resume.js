@@ -36,6 +36,27 @@ export default function Resume({ headerData, educations, skills, trainings, cert
             marginRight: 20
         },
 
+        qrHeaderCell: {
+            width: 100,
+            padding: 10,
+            fontWeight: "bold",
+            fontSize: 11,
+            color: "#ffffff",
+            textAlign: "start",
+        },
+
+        qrCell: {
+            width: 100,
+            justifyContent: "start",
+            alignItems: "start",
+            padding: 5,
+        },
+
+        qrImage: {
+            width: 45,
+            height: 45,
+        },
+
         infoContainer: {
             flex: 1
         },
@@ -62,6 +83,11 @@ export default function Resume({ headerData, educations, skills, trainings, cert
             color: '#ffffff'
         },
 
+        summaryText: {
+            color: '#ffffff',
+            padding: 25,
+        },
+
         /* SECTION */
 
         section: {
@@ -74,13 +100,19 @@ export default function Resume({ headerData, educations, skills, trainings, cert
             padding: 10,
             textAlign: "center",
             backgroundColor: "rgb(255, 255, 255)",
-            color: "#000000"
+            color: "#000000",
+            textDecoration: "underline",
         },
 
         /* TABLE */
 
         table: {
             width: "100%",
+        },
+
+        tableHeaderSummary: {
+            flexDirection: "row",
+            backgroundColor: "rgb(0, 52, 70)",
         },
 
         tableHeader: {
@@ -99,7 +131,7 @@ export default function Resume({ headerData, educations, skills, trainings, cert
         tableRow: {
             flexDirection: "row",
             borderBottom: "1 solid #e5e7eb",
-            backgroundColor: "#f9f9f9"
+            backgroundColor: "#f9f9f9",
         },
 
         tableCell: {
@@ -188,140 +220,15 @@ export default function Resume({ headerData, educations, skills, trainings, cert
                     </View>
                 </View>
 
-                {/* EDUCATION TABLE */}
-
                 <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>
-                        Education
-                    </Text>
                     <View style={styles.table}>
-
-                        {/* HEADER */}
-
-                        <View style={styles.tableHeader}>
-                            <Text style={styles.tableHeaderCell}>
-                                Date
-                            </Text>
-                            <Text style={styles.tableHeaderCell}>
-                                School Name
-                            </Text>
-                            <Text style={styles.tableHeaderCell}>
-                                Field of Study
+                        <View style={styles.tableHeaderSummary}>
+                            <Text style={[styles.tableHeaderCell, styles.summaryText]}>
+                                Summary : {"\n\n"}
+                                {headerData.summary}
                             </Text>
                         </View>
-
-                        {/* ROWS */}
-
-                        {educations.map((education) => (
-                            <View key={education.id} style={styles.tableRow}>
-                                <Text style={styles.tableCell}>
-                                    {education.date}
-                                </Text>
-                                <Text style={styles.tableCell}>
-                                    {education.school_name}
-                                </Text>
-                                <Text style={styles.tableCell}>
-                                    {education.field_of_study}
-                                </Text>
-                            </View>
-                        ))}
                     </View>
-                </View>
-
-                {/* TRAINING TABLE */}
-
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>
-                        Training
-                    </Text>
-                    <View style={styles.table}>
-
-                        {/* HEADER */}
-
-                        <View style={styles.tableHeader}>
-                            <Text style={styles.tableHeaderCell}>
-                                Date
-                            </Text>
-                            <Text style={styles.tableHeaderCell}>
-                                Programme Name
-                            </Text>
-                            <Text style={styles.tableHeaderCell}>
-                                Field
-                            </Text>
-                        </View>
-
-                        {/* ROWS */}
-
-                        {trainings.map((training) => (
-                            <View key={training.id} style={styles.tableRow}>
-                                <Text style={styles.tableCell}>
-                                    {training.date}
-                                </Text>
-                                <Text style={styles.tableCell}>
-                                    {training.programme_name}
-                                </Text>
-                                <Text style={styles.tableCell}>
-                                    {training.field}
-                                </Text>
-                            </View>
-                        ))}
-                    </View>
-                </View>
-
-                {/* CERTIFICATIONS TABLE */}
-
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>
-                        Certifications
-                    </Text>
-                    <View style={styles.table}>
-
-                        {/* HEADER */}
-
-                        <View style={styles.tableHeader}>
-                            <Text style={styles.tableHeaderCell}>
-                                Date
-                            </Text>
-                            <Text style={styles.tableHeaderCell}>
-                                Name
-                            </Text>
-                            <Text style={styles.tableHeaderCell}>
-                                Link
-                            </Text>
-                        </View>
-
-                        {/* ROWS */}
-
-                        {certs.map((cert) => (
-                            <View key={cert.id} style={styles.tableRow}>
-                                <Text style={styles.tableCell}>
-                                    {cert.date}
-                                </Text>
-                                <Text style={styles.tableCell}>
-                                    {cert.name}
-                                </Text>
-                                <Link style={styles.link} src={cert.link}>
-                                    {cert.link.match(/.{1,40}/g).join('\n')}
-                                </Link>
-                            </View>
-                        ))}
-                    </View>
-                </View>
-
-                {/* SKILLS LIST */}
-
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>
-                        Skills
-                    </Text>
-                    {skills.map((skill) => (
-                        <View key={skill.id} style={styles.list}>
-                            <View style={styles.listItem}>
-                                <Text style={styles.itemName}>{skill.name}</Text>
-                                <Text style={styles.itemList}>{skill.list}</Text>
-                            </View>
-                        </View>
-                    ))}
                 </View>
 
                 {/* EXPERIENCES TABLE */}
@@ -365,6 +272,104 @@ export default function Resume({ headerData, educations, skills, trainings, cert
                                 <Text style={styles.tableCell}>
                                     {experience.description}
                                 </Text>
+                            </View>
+                        ))}
+                    </View>
+                </View>
+
+                {/* EDUCATION TABLE */}
+
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>
+                        Educations
+                    </Text>
+                    <View style={styles.table}>
+
+                        {/* HEADER */}
+
+                        <View style={styles.tableHeader}>
+                            <Text style={styles.tableHeaderCell}>
+                                Date
+                            </Text>
+                            <Text style={styles.tableHeaderCell}>
+                                School Name
+                            </Text>
+                            <Text style={styles.tableHeaderCell}>
+                                Field of Study
+                            </Text>
+                        </View>
+
+                        {/* ROWS */}
+
+                        {educations.map((education) => (
+                            <View key={education.id} style={styles.tableRow}>
+                                <Text style={styles.tableCell}>
+                                    {education.date}
+                                </Text>
+                                <Text style={styles.tableCell}>
+                                    {education.school_name}
+                                </Text>
+                                <Text style={styles.tableCell}>
+                                    {education.field_of_study}
+                                </Text>
+                            </View>
+                        ))}
+                    </View>
+                </View>
+
+                {/* SKILLS LIST */}
+
+                <View style={styles.section}>
+                    <Text style={[styles.sectionTitle, { marginBottom: 10 }]}>
+                        Skills
+                    </Text>
+                    {skills.map((skill) => (
+                        <View key={skill.id} style={styles.list}>
+                            <View style={styles.listItem}>
+                                <Text style={styles.itemName}>{skill.name}</Text>
+                                <Text style={styles.itemList}>{skill.list}</Text>
+                            </View>
+                        </View>
+                    ))}
+                </View>
+
+                {/* TRAINING TABLE */}
+
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>
+                        Trainings
+                    </Text>
+                    <View style={styles.table}>
+
+                        {/* HEADER */}
+
+                        <View style={styles.tableHeader}>
+                            <Text style={styles.tableHeaderCell}>
+                                Date
+                            </Text>
+                            <Text style={styles.tableHeaderCell}>
+                                Programme Name
+                            </Text>
+                            <Text style={styles.qrHeaderCell}>
+                                QR Certificate
+                            </Text>
+                        </View>
+
+                        {/* ROWS */}
+
+                        {trainings.map((training) => (
+                            <View key={training.id} style={styles.tableRow}>
+                                <Text style={styles.tableCell}>
+                                    {training.date}
+                                </Text>
+                                <Text style={styles.tableCell}>
+                                    {training.programme_name}
+                                </Text>
+                                <View style={styles.qrCell}>
+                                    <Link src={training.cert}>
+                                        <Image style={styles.qrImage} src={training.qr} />
+                                    </Link>
+                                </View>
                             </View>
                         ))}
                     </View>

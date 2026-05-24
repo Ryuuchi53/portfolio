@@ -4,6 +4,7 @@ import { ref, onValue } from 'firebase/database';
 import logo from './logo.svg';
 import Resume from "./Resume";
 import { pdf } from '@react-pdf/renderer';
+import QRCode from "qrcode";
 
 export default function Home() {
   const [content, setContent] = useState(null);
@@ -98,6 +99,7 @@ export default function Home() {
           date: value.date,
           programme_name: value.programme_name,
           field: value.field,
+          cert: value.cert,
         }));
         setTrainings(data);
       } else {
@@ -179,8 +181,16 @@ export default function Home() {
 
   const handlePreviewPDF = async () => {
     if (!headerData || !educations || !skills || !trainings || !certs || !experiences || !references) return;
+
+    const trainingsWithQR = await Promise.all(
+      trainings.map(async (training) => ({
+        ...training,
+        qr: await QRCode.toDataURL(training.cert),
+      }))
+    );
+
     const blob = await pdf(
-      <Resume headerData={headerData} educations={educations} skills={skills} trainings={trainings} certs={certs} experiences={experiences} references={references} />
+      <Resume headerData={headerData} educations={educations} skills={skills} trainings={trainingsWithQR} certs={certs} experiences={experiences} references={references} />
     ).toBlob();
 
     const url = URL.createObjectURL(blob);
